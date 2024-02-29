@@ -91,7 +91,7 @@ function endGame() {
         game.speed_typing = false;
         localStorage.setItem('game', JSON.stringify(game));
         alert(`Game Over! Your final score is ${finalScore}. WPM: ${wpmTag.innerText}, Mistakes: ${mistakeTag.innerText}, CPM: ${cpmTag.innerText}`);
-        window.location.href = "../../index.html";
+        window.location.href = "https://moizaasghar.github.io/BizMind-Battle/";
     }
 }
 

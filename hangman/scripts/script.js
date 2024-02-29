@@ -70,7 +70,7 @@ const gameOver = (isVictory) => {
         game.hangman = false;
         localStorage.setItem('game', JSON.stringify(game));
         alert(`Game over! Your total score: ${totalScore}`);
-        window.location.href = "../../index.html";
+        window.location.href = "https://moizaasghar.github.io/BizMind-Battle/";
     }
 };
 
