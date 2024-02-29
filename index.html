@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BizMind Game Menu</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Animated Gradient Background */
+        @keyframes gradientAnimation {x
+            0%{
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+            border-radius: 10px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container text-center mt-5">
+    <h1>BizMind Game Menu</h1>
+    <h1 id="score">Your Score: </h1>
+    <p>Carefully read the following game rules before commencing! </p>
+    <p> 1- Once you click on a game to start, you will only be allowed to play it <strong>once</strong>.</p>
+    <p> 2- Failure to submit a <strong>screenshot</strong> of your final score will make you ineligible to claim any prize. </p>
+    <p> 3- Once a game is played it will be <strong>removed</strong> from your dashboard. </p>
+   <p> 4- Once all the games are played, click capture screenshot to save your score. </p>
+    <p> 5- The screenshot will be used to verify your score and determine the winner. </p>
+    <div id="div1" class="row mt-3">
+        <div class="col-3" id="game_2048"><a href="2048/game2048.html" class="btn btn-primary w-100">2048 Tile Game</a></div>
+        <div class="col-3" id="guess_the_logo"><a href="guess_the_logo/logochallenge.html" class="btn btn-secondary w-100">Guess the Logo Game</a></div>
+        <div class="col-3" id="hangman"><a href="hangman/hangman.html" class="btn btn-success w-100">Hangman</a></div>
+        <div class="col-3" id="memory_card"><a href="memory_card/memory_card.html" class="btn btn-danger w-100">Memory Card</a></div>
+    </div>
+    <div id="div2" class="row mt-3">
+        <div class="col-4" id="speed_typing"><a href="speed_typing/speed_typing.html" class="btn btn-warning w-100">Speed Writing</a></div>
+        <div class="col-4" id="maze"><a href="maze/mazerun1.html" class="btn btn-success w-100">Maze Run</a></div>
+        <div class="col-4" id="flappy_bird"><a href="flappybird/flappybird.html" class="btn btn-primary w-100">Flappy Bird</a></div>
+    </div>
+    <br>
+    <button class="btn btn-primary w-100" id="capture">Capture Screenshot</button>
+
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
+<!-- IMPORTING SCRIPTS -->
+<script src="main.js"></script>
+<!--Speed Typing Script-->
+<script src="speed_typing/js/script.js"></script>
+<!--Memory Card Script-->
+<script src="memory_card/script.js"></script>
+<!--Hangman Script-->
+<script src="hangman/scripts/script.js"></script>
+<!--Guess The Logo Script-->
+<script src="guess_the_logo/script.js"></script>
+<!--2048 Script-->
+<script src="2048/game2048.js"></script>
+
+</body>
+</html>
