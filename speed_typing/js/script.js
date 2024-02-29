@@ -115,7 +115,7 @@ function calculateScore() {
 
 function resetGame() {
     if (round === 2) {
-        maxTime = 9; // Set a lower maxTime for Round 2
+        maxTime = 120; // Set a lower maxTime for Round 2
     }
     loadParagraph();
     clearInterval(timer);
