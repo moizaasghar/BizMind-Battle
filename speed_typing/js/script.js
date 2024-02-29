@@ -9,7 +9,7 @@ const typingText = document.querySelector(".typing-text p"),
     cpmTag = document.querySelector(".cpm span");
 
 let timer,
-    maxTime = 10, // Initial maxTime for Round 1
+    maxTime = 180, // Initial maxTime for Round 1
     timeLeft = maxTime,
     charIndex = mistakes = isTyping = 0,
     round = 1; // Initialize round variable
@@ -35,7 +35,7 @@ function initTyping() {
             timer = setInterval(initTimer, 1000);
             isTyping = true;
         }
-        
+
         if (charIndex === characters.length - 1) {
             endGame(); // Call endGame when the paragraph is completed
             return; // Stop further execution
@@ -77,7 +77,7 @@ function endGame() {
     clearInterval(timer);
     inpField.disabled = true; // Disable further typing
     let finalScore = calculateScore();
-    
+
     // Check if the current round is 1, then proceed to round 2
     if (round === 1) {
         alert(`Round 1 Over! Your score is ${finalScore}. Starting Round 2.`);

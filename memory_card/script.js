@@ -1,25 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
-
     // Timer logic
-var timeLeft = 180; // 3 minutes in seconds
+    var timeLeft = 180; // 3 minutes in seconds
+    const totalPairs = 18;
 
-var timerInterval = setInterval(function() {
-  timeLeft--;
-  var minutes = Math.floor(timeLeft / 60);
-  var seconds = timeLeft % 60;
-  document.getElementById('timer').innerHTML = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-  if (timeLeft <= 0) {
-    clearInterval(timerInterval);
-    var score = calculateScore();
-    var game = JSON.parse(localStorage.getItem('game'));
-    game.memory_card_score = score;
-    game.totalScore = game.totalScore + score;
-    game.memory_card = false;
-    localStorage.setItem('game', JSON.stringify(game));
-    alert('Time is up!' + ' Your score is' + score + '. Click OK to return to the main menu.');
-    window.location.href = "../index.html";
-  }
-}, 1000); // Update every second
+    var timerInterval = setInterval(function() {
+        timeLeft--;
+        var minutes = Math.floor(timeLeft / 60);
+        var seconds = timeLeft % 60;
+        document.getElementById('timer').innerHTML = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+        if (timeLeft <= 0) {
+            endGame(false); // Pass false to indicate the game ended due to time out
+        }
+    }, 1000); // Update every second
 });
 
 const cards = document.querySelectorAll(".card");
@@ -27,6 +19,7 @@ const cards = document.querySelectorAll(".card");
 let matched = 0;
 let cardOne, cardTwo;
 let disableDeck = false;
+var timerInterval;
 
 
 function flipCard({target: clickedCard}) {
@@ -48,20 +41,20 @@ calculateScore = () => {
 }
 
 
-
 function matchCards(img1, img2) {
     if(img1 === img2) {
         matched++;
-        if(matched == 8) {
-            setTimeout(() => {
-                return shuffleCard();
-            }, 1000);
-        }
         cardOne.removeEventListener("click", flipCard);
         cardTwo.removeEventListener("click", flipCard);
         cardOne = cardTwo = "";
-        return disableDeck = false;
+        disableDeck = false;
+
+        if (matched === 18) {
+           endGame(true); // Pass true to indicate the game ended due to successful matching
+        }
     }
+    else {
+
     setTimeout(() => {
         cardOne.classList.add("shake");
         cardTwo.classList.add("shake");
@@ -74,6 +67,25 @@ function matchCards(img1, img2) {
         disableDeck = false;
     }, 1200);
 }
+}
+
+
+function endGame(success) {
+    var score = calculateScore();
+    var game = JSON.parse(localStorage.getItem('game'));
+    game.memory_card_score = score;
+    game.totalScore += score;
+    game.memory_card = false;
+    localStorage.setItem('game', JSON.stringify(game));
+
+    let message = success ? 'Congratulations! You matched all pairs. Your score is ' + score + '.' : 'Time is up! Your score is ' + score + '.';
+    setTimeout(() => {
+        alert(message + ' Click OK to return to the main menu.');
+        window.location.href = "../index.html";
+    }, 500); // Add a slight delay to allow the last match to be visible before alerting and redirecting
+}
+
+
 function shuffleCard() {
     matched = 0;
     disableDeck = false;
@@ -81,17 +93,9 @@ function shuffleCard() {
     let arr = [];
     // For 36 cards, repeat 5 images 6 times and 2 images 5 times
     // Adjusting the distribution of 7 unique images
-    for(let i = 1; i <= 7; i++) {
-        // Repeat 5 images 6 times
-        if(i <= 5) {
-            for(let j = 0; j < 6; j++) {
-                arr.push(i);
-            }
-        } else {
-            // Repeat 2 images 5 times
-            for(let j = 0; j < 5; j++) {
-                arr.push(i);
-            }
+    for(let i = 1; i <= 6; i++) {
+        for(let j = 1; j <= 6; j++) {
+            arr.push(j);
         }
     }
 
@@ -109,7 +113,7 @@ function shuffleCard() {
 
 
 shuffleCard();
-    
+
 cards.forEach(card => {
     card.addEventListener("click", flipCard);
 });
