@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     // Timer logic
-var timeLeft = 120; // 2 minutes in seconds
+var timeLeft = 180; // 3 minutes in seconds
 
 var timerInterval = setInterval(function() {
   timeLeft--;
@@ -74,25 +74,34 @@ function matchCards(img1, img2) {
         disableDeck = false;
     }, 1200);
 }
-
 function shuffleCard() {
     matched = 0;
     disableDeck = false;
     cardOne = cardTwo = "";
-    // Adjust for 24 pairs, assuming you have 12 unique images and each is used twice
-    let arr = [
-        1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12
-    ];
-    for(let i = 1; i <= 24; i++) {
-        arr.push(i <= 12 ? i : i - 12);
-        arr.push(i <= 12 ? i : i - 12);
+    let arr = [];
+    // For 36 cards, repeat 5 images 6 times and 2 images 5 times
+    // Adjusting the distribution of 7 unique images
+    for(let i = 1; i <= 7; i++) {
+        // Repeat 5 images 6 times
+        if(i <= 5) {
+            for(let j = 0; j < 6; j++) {
+                arr.push(i);
+            }
+        } else {
+            // Repeat 2 images 5 times
+            for(let j = 0; j < 5; j++) {
+                arr.push(i);
+            }
+        }
     }
-    arr.sort(() => Math.random() > 0.5 ? 1 : -1);
+
+    // Shuffle the array
+    arr.sort(() => Math.random() - 0.5);
 
     cards.forEach((card, i) => {
         card.classList.remove("flip");
         let imgTag = card.querySelector(".back-view img");
-        // Adjust image assignment logic if necessary
+        // Adjust image assignment logic to use the shuffled array
         imgTag.src = `images/img-${arr[i]}.png`;
         card.addEventListener("click", flipCard);
     });

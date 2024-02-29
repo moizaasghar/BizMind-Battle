@@ -9,7 +9,7 @@ const typingText = document.querySelector(".typing-text p"),
     cpmTag = document.querySelector(".cpm span");
 
 let timer,
-    maxTime = 180, // Initial maxTime for Round 1
+    maxTime = 10, // Initial maxTime for Round 1
     timeLeft = maxTime,
     charIndex = mistakes = isTyping = 0,
     round = 1; // Initialize round variable
@@ -115,7 +115,7 @@ function calculateScore() {
 
 function resetGame() {
     if (round === 2) {
-        maxTime = 120; // Set a lower maxTime for Round 2
+        maxTime = 9; // Set a lower maxTime for Round 2
     }
     loadParagraph();
     clearInterval(timer);
