@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.removeChild(link);
             localStorage.removeItem('game');
             alert("Your score has been saved. Click OK to return to the main menu.");
-            window.location.href = "../../index.html";
+            window.location.href = "../index.html";
             saveToMemory(); 
         });
     });
